@@ -19,9 +19,16 @@ namespace ConsoleApptoAPI.Controllers
 		}
 
 		[Route("/get-all/{id}/author/{authorId}")]
-		public string GetAllAuthorsById(int id,int authorId)
+		public string GetAllAuthorsById(int id, int authorId)
 		{
-			return "get id"+id+" author"+authorId;
+			return "get id" + id + " author" + authorId;
+		}
+
+		// Query String in Routing
+		[Route("search")]
+		public string GetAllBooks(int id, int authorId, string name, int rating, int price)
+		{
+			return "get from search";
 		}
 	}
 }
