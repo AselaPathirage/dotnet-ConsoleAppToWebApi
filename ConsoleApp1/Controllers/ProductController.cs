@@ -8,18 +8,18 @@ namespace ConsoleApptoAPI.Controllers
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
-		private readonly ProductRepository productRepository;
+		private readonly IProductRepository _productRepository;
 
-		public ProductController()
+		public ProductController(IProductRepository productRepository)
 		{
-			productRepository = new ProductRepository();
+			_productRepository = productRepository;
 		}
 
 		[HttpPost("")]
 		public IActionResult AddProduct([FromBody] ProductModel product)
 		{
-			productRepository.AddProduct(product);
-			var products = productRepository.GetAllProducts();
+			_productRepository.AddProduct(product);
+			var products = _productRepository.GetAllProducts();
 			return Ok(products);
 		}
 	}

@@ -1,4 +1,6 @@
-﻿namespace ConsoleApptoAPI
+﻿using ConsoleApptoAPI.Repository;
+
+namespace ConsoleApptoAPI
 {
 	public class Startup
 	{
@@ -6,6 +8,7 @@
 		{
 			services.AddControllers();
 			services.AddTransient<CustomMiddleware>();
+			services.AddSingleton<IProductRepository, ProductRepository>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
