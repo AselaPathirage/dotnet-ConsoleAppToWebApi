@@ -2,7 +2,7 @@
 
 namespace ConsoleApptoAPI.Repository
 {
-	public class ProductRepository
+	public class ProductRepository : IProductRepository
 	{
 		private List<ProductModel> products = new List<ProductModel>();
 
@@ -15,5 +15,10 @@ namespace ConsoleApptoAPI.Repository
 
 		public List<ProductModel> GetAllProducts()
 		{ return products; }
+
+		public string GetProductName()
+		{
+			return "Book name";
+		}
 	}
 }
