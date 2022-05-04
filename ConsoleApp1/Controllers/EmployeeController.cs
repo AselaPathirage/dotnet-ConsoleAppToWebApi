@@ -1,4 +1,5 @@
 ﻿using ConsoleApptoAPI.Models;
+using ConsoleApptoAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsoleApptoAPI.Controllers
@@ -34,6 +35,13 @@ namespace ConsoleApptoAPI.Controllers
 				return NotFound();
 			}
 			return new EmployeeModel() { Id = 1, Name = "emp1" };
+		}
+
+		[Route("name")]
+		public IActionResult GetName([FromServices]IProductRepository _productRepository)
+		{
+			var name = _productRepository.GetProductName();
+			return Ok(name);
 		}
 	}
 }
