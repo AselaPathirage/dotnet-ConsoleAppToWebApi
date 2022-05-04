@@ -8,7 +8,8 @@ namespace ConsoleApptoAPI
 		{
 			services.AddControllers();
 			services.AddTransient<CustomMiddleware>();
-			services.AddSingleton<IProductRepository, ProductRepository>();
+			//services.AddSingleton<IProductRepository, ProductRepository>(); 
+			services.AddScoped<IProductRepository, ProductRepository>(); //new instance will be created for each http request, but same instance inside 1 http request
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
