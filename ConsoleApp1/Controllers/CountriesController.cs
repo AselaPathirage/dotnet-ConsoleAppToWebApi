@@ -24,5 +24,11 @@ namespace ConsoleApptoAPI.Controllers
 		{
 			return Ok($"Name={this.Country.Name},Population={this.Country.Population},Area={this.Country.Area}");
 		}
+
+		[HttpGet("test")]
+		public IActionResult GetCountry([FromQuery]string name) //force to bind data only from the query string, [FromRoute] => from route, [FromBody],[FromForm],[FromHeader]
+		{
+			return Ok($"Name={name}")
+		}
 	}
 }
