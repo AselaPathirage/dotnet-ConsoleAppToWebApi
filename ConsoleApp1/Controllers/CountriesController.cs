@@ -5,7 +5,6 @@ namespace ConsoleApptoAPI.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	//[BindProperties]
 	public class CountriesController : ControllerBase
 	{
 		//	[BindProperty]
@@ -16,7 +15,7 @@ namespace ConsoleApptoAPI.Controllers
 		//	public int Area { get; set; }
 
 		//[BindProperty]
-		[BindProperty(SupportsGet =true)] //httpget
+		[BindProperty(SupportsGet = true)] //httpget
 		public CountryModel Country { get; set; }
 
 		[HttpPost("")]
@@ -26,9 +25,15 @@ namespace ConsoleApptoAPI.Controllers
 		}
 
 		[HttpGet("test")]
-		public IActionResult GetCountry([FromQuery]string name) //force to bind data only from the query string, [FromRoute] => from route, [FromBody],[FromForm],[FromHeader]
+		public IActionResult GetCountry([FromQuery] string name) //force to bind data only from the query string, [FromRoute] => from route, [FromBody],[FromForm],[FromHeader]
 		{
-			return Ok($"Name={name}")
+			return Ok($"Name={name}");
+		}
+
+		[HttpGet("search")]
+		public IActionResult SearchCountries([ModelBinder(typeof(CustomBinder))] string[] countries)
+		{
+			return Ok(countries);
 		}
 	}
 }
